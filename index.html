@@ -984,11 +984,33 @@
       .nav {
         flex-wrap: wrap;
         justify-content: space-between;
+        position: relative;
+        padding: 0 24px;
+      }
+      .nav-top {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .nav-toggle {
+        display: none;
+        border: 1px solid var(--border);
+        background: white;
+        color: var(--text-dark);
+        padding: 10px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1.2rem;
       }
       .nav-links {
         flex-wrap: wrap;
         justify-content: center;
         gap: 14px;
+      }
+      .nav-links a {
+        white-space: nowrap;
       }
       .nav-cta {
         flex-shrink: 0;
@@ -1015,22 +1037,45 @@
 
       @media (max-width: 768px) {
         .nav {
-          flex-direction: column;
-          align-items: stretch;
-          row-gap: 12px;
+          padding: 16px 18px;
         }
-        .nav-logo,
+        .nav-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+        }
         .nav-links,
         .nav-cta {
+          display: none;
           width: 100%;
         }
-        .nav-links {
-          justify-content: center;
+        .nav-open .nav-links,
+        .nav-open .nav-cta {
+          display: flex;
         }
-        .nav-cta {
+        .nav-open .nav-links {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
+          margin-top: 12px;
+        }
+        .nav-open .nav-cta {
+          margin-top: 12px;
+          justify-content: center;
+          padding: 14px 16px;
+        }
+        .nav-links a {
           width: 100%;
           text-align: center;
+          padding: 12px 0;
+          border-radius: 12px;
+          background: var(--bg-alt);
         }
+      }
+
+      @media (max-width: 768px) {
         .hero {
           grid-template-columns: 1fr;
           padding: 50px 18px;
@@ -1161,17 +1206,59 @@
       </div>
     </div>
 
-    <nav class="nav">
-      <div class="nav-logo">
-        <img src="./mr.png" alt="MR ANDY" />
+    <nav class="nav" id="mainNav">
+      <div class="nav-top">
+        <div class="nav-logo">
+          <img src="./mr.png" alt="MR ANDY" />
+        </div>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Toggle menu"
+          onclick="toggleNav()"
+        >
+          <i class="ti ti-menu-2"></i>
+        </button>
       </div>
       <div class="nav-links">
-        <a onclick="goTo('events')">Events</a>
-        <a onclick="goTo('packages')">Packages</a>
-        <a onclick="goTo('gallery')">Gallery</a>
-        <a onclick="goTo('booking')">Contact</a>
+        <a
+          onclick="
+            goTo('events');
+            closeMobileNav();
+          "
+          >Events</a
+        >
+        <a
+          onclick="
+            goTo('packages');
+            closeMobileNav();
+          "
+          >Packages</a
+        >
+        <a
+          onclick="
+            goTo('gallery');
+            closeMobileNav();
+          "
+          >Gallery</a
+        >
+        <a
+          onclick="
+            goTo('booking');
+            closeMobileNav();
+          "
+          >Contact</a
+        >
       </div>
-      <button class="nav-cta" onclick="goTo('booking')">Book Now →</button>
+      <button
+        class="nav-cta"
+        onclick="
+          goTo('booking');
+          closeMobileNav();
+        "
+      >
+        Book Now →
+      </button>
     </nav>
 
     <section class="hero">
@@ -1554,6 +1641,16 @@
 
       function openLink(url) {
         window.open(url, "_blank");
+      }
+
+      function toggleNav() {
+        const nav = document.getElementById("mainNav");
+        nav.classList.toggle("nav-open");
+      }
+
+      function closeMobileNav() {
+        const nav = document.getElementById("mainNav");
+        nav.classList.remove("nav-open");
       }
 
       // CUSTOMIZER
