@@ -983,7 +983,6 @@
 
       /* MOBILE FRIENDLY ENHANCEMENTS */
       .nav {
-        flex-wrap: wrap;
         justify-content: space-between;
         padding: 0 24px;
         background: rgba(255, 255, 255, 0.95);
@@ -991,7 +990,6 @@
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       }
       .nav-top {
-        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -1040,9 +1038,13 @@
 
       @media (max-width: 768px) {
         .nav {
+          flex-wrap: wrap;
           padding: 16px 18px;
           height: auto;
           min-height: 72px;
+        }
+        .nav-top {
+          width: 100%;
         }
         .nav-open {
           background: rgba(255, 255, 255, 1);
