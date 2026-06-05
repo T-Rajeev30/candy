@@ -986,7 +986,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 0 24px;
-        background: rgba(113, 8, 8, 0.96);
+        background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       }
@@ -1041,6 +1041,12 @@
       @media (max-width: 768px) {
         .nav {
           padding: 16px 18px;
+          height: auto;
+          min-height: 72px;
+        }
+        .nav-open {
+          background: rgba(255, 255, 255, 1);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
         }
         .nav-toggle {
           display: flex;
@@ -1063,6 +1069,9 @@
           align-items: stretch;
           gap: 10px;
           margin-top: 12px;
+          padding: 16px;
+          background: var(--bg-alt);
+          border-radius: 18px;
         }
         .nav-open .nav-cta {
           margin-top: 12px;
@@ -1074,7 +1083,7 @@
           text-align: center;
           padding: 12px 0;
           border-radius: 12px;
-          background: var(--bg-alt);
+          background: var(--white);
         }
       }
 
