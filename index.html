@@ -1,0 +1,1822 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mr. Andy | Candy Wall Experiences</title>
+
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+    />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* NEW COLOR PALETTE */
+      :root {
+        --brand: #fd375b; /* Primary Accent */
+        --brand-hover: #e0294b; /* Darker shade for hovers */
+        --brand-light: #fff0f3; /* Very faint pink for backgrounds/badges */
+
+        --white: #ffffff;
+        --bg-alt: #f9fafb; /* Soft off-white for section separation */
+
+        --text-dark: #111827; /* Main headings and dark text */
+        --text-muted: #4b5563; /* Paragraphs and secondary text */
+
+        --border: #e5e7eb;
+        --border-focus: #d1d5db;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--white);
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      .nav {
+        height: 72px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        flex-shrink: 0;
+      }
+      .nav-logo img {
+        height: 56px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .nav-links a {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-dark);
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--brand);
+      }
+      .nav-cta {
+        background: var(--brand);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 20px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.1s;
+      }
+      .nav-cta:hover {
+        background: var(--brand-hover);
+        transform: translateY(-1px);
+      }
+
+      /* BUTTONS */
+      .btn-primary {
+        background: var(--brand);
+        color: #fff;
+        padding: 14px 28px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 12px;
+        transition: 0.2s;
+        cursor: pointer;
+      }
+      .btn-primary:hover {
+        background: var(--brand-hover);
+        transform: translateY(-2px);
+      }
+      .btn-secondary {
+        background: transparent;
+        color: var(--text-dark);
+        padding: 14px 28px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        border: 1px solid var(--text-dark);
+        display: inline-block;
+        transition: 0.2s;
+        cursor: pointer;
+      }
+      .btn-secondary:hover {
+        background: var(--bg-alt);
+        transform: translateY(-2px);
+      }
+
+      /* HERO */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        padding: 80px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        align-items: center;
+      }
+      .hero-eyebrow {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--brand);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+      }
+      .hero-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        line-height: 1.1;
+        color: var(--text-dark);
+        margin-bottom: 24px;
+      }
+      .hero-highlight {
+        color: var(--brand);
+        font-style: italic;
+      }
+      .hero-body {
+        font-size: 16px;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 32px;
+        max-width: 480px;
+      }
+      .hero-image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      /* TICKER */
+      .ticker {
+        background: var(--brand);
+        color: white;
+        padding: 16px 0;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .ticker-inner {
+        display: inline-block;
+        animation: ticker 30s linear infinite;
+      }
+      .ticker-inner span {
+        margin: 0 32px;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      @keyframes ticker {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* SECTIONS */
+      .section,
+      #events,
+      .packages-section,
+      .usp-inner,
+      .gallery-inner {
+        padding: 72px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .sec-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--brand);
+        margin-bottom: 12px;
+      }
+      .sec-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+        font-weight: 800;
+        color: var(--text-dark);
+        line-height: 1.12;
+        margin-bottom: 12px;
+        letter-spacing: -0.01em;
+      }
+      .sec-body {
+        font-size: 15px;
+        color: var(--text-muted);
+        line-height: 1.8;
+        max-width: 520px;
+        font-weight: 400;
+      }
+
+      /* EVENTS SECTION */
+      #events {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      #events h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 40px;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+      }
+      #events h2 span {
+        color: var(--brand);
+        font-style: italic;
+      }
+      #events p {
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+      .events-features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+      .feature-item i {
+        color: var(--brand);
+        font-size: 20px;
+      }
+      .events-right {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .event-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        padding: 24px;
+        border-radius: 12px;
+        text-align: center;
+        transition: 0.3s;
+      }
+      .event-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--brand);
+        box-shadow: 0 10px 20px rgba(253, 55, 91, 0.08);
+      }
+      .event-card i {
+        font-size: 32px;
+        color: var(--brand);
+        margin-bottom: 12px;
+      }
+      .event-card span {
+        display: block;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      /* CUSTOMIZER */
+      .customizer-section {
+        background: var(--bg-alt);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .customizer-inner {
+        padding: 72px 40px;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+      .theme-swatches {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 24px;
+      }
+      .swatch {
+        border-radius: 10px;
+        padding: 12px 8px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.15s;
+        text-align: center;
+        background: var(--white);
+      }
+      .swatch:hover,
+      .swatch.active {
+        border-color: var(--brand);
+        transform: scale(1.04);
+      }
+      .swatch-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin: 0 auto 7px;
+        border: 1px solid var(--border);
+      }
+      .swatch-name {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+      .preview-wall {
+        background: var(--white);
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 16px;
+        padding: 24px 20px;
+      }
+      .preview-wall .wall-title {
+        color: var(--text-muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      .disp-row,
+      .preview-disp-row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+      .disp,
+      .preview-disp {
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--bg-alt);
+        aspect-ratio: 0.5;
+        position: relative;
+        overflow: hidden;
+      }
+      .disp-fill,
+      .preview-disp-fill {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0 0 6px 6px;
+        transition:
+          height 0.35s ease,
+          background 0.4s;
+      }
+
+      /* PACKAGES */
+      .pkg-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 32px;
+      }
+      .pkg-card {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 32px 24px;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+        background: var(--white);
+      }
+      .pkg-card:hover {
+        border-color: var(--brand);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(253, 55, 91, 0.05);
+      }
+      .pkg-card.selected {
+        border: 2px solid var(--brand);
+        background: var(--brand-light);
+      }
+      .pkg-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--brand);
+        color: white;
+        padding: 4px 14px;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 20px;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .pkg-name {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 12px;
+      }
+      .pkg-price {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin-bottom: 24px;
+      }
+      .pkg-price span {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--text-muted);
+      }
+      .pkg-features {
+        list-style: none;
+        margin-bottom: 24px;
+      }
+      .pkg-features li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+        font-weight: 500;
+      }
+      .pkg-features i {
+        color: var(--brand);
+        font-size: 18px;
+      }
+      .pkg-select-btn {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border-focus);
+        border-radius: 6px;
+        background: var(--bg-alt);
+        color: var(--text-dark);
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .pkg-card:hover .pkg-select-btn {
+        border-color: var(--brand);
+        color: var(--brand);
+      }
+      .pkg-card.selected .pkg-select-btn {
+        background: var(--brand);
+        border-color: var(--brand);
+        color: white;
+      }
+
+      .extras-wrapper {
+        margin-top: 48px;
+      }
+      .extras-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 16px;
+      }
+      .extras {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .extra-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border: 1px solid var(--border);
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s;
+        color: var(--text-muted);
+      }
+      .extra-tag:hover {
+        border-color: var(--brand);
+        color: var(--text-dark);
+      }
+      .extra-tag.active {
+        background: var(--brand);
+        color: white;
+        border-color: var(--brand);
+      }
+      .extra-tag strong {
+        color: var(--text-dark);
+        font-weight: 700;
+      }
+      .extra-tag.active strong {
+        color: white;
+      }
+
+      .calculator-summary {
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-top: 32px;
+        text-align: center;
+      }
+      .calc-total {
+        font-family: "Playfair Display", serif;
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+      }
+      .calc-note {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-muted);
+      }
+
+      /* USP */
+      .usp-section {
+        background: var(--bg-alt);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .usp-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 16px;
+        margin-top: 32px;
+      }
+      .usp-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        transition: all 0.2s;
+        cursor: default;
+      }
+      .usp-card:hover {
+        border-color: var(--brand);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      }
+      .usp-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: var(--brand-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        color: var(--brand);
+        font-size: 22px;
+      }
+      .usp-card h3 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+      }
+      .usp-card p {
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* GALLERY */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 32px;
+      }
+      .gallery-item {
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+        background: var(--bg-alt);
+        aspect-ratio: 1;
+        transition: transform 0.2s;
+        border: 1px solid var(--border);
+      }
+      .gallery-item:hover {
+        transform: scale(1.02);
+        border-color: var(--brand);
+      }
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+      .gallery-thumb {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+        background: var(--bg-alt);
+      }
+      .gallery-thumb-label {
+        font-size: 13px;
+        color: var(--text-dark);
+        font-weight: 600;
+        text-align: center;
+        padding: 0 10px;
+      }
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(253, 55, 91, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .gallery-overlay i {
+        font-size: 32px;
+        color: white;
+      }
+
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(17, 24, 39, 0.9);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox.open {
+        display: flex;
+      }
+      .lb-content {
+        background: #fff;
+        border-radius: 14px;
+        max-width: 480px;
+        width: 90%;
+        overflow: hidden;
+        position: relative;
+      }
+      .lb-img {
+        width: 100%;
+        aspect-ratio: 1.2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-alt);
+        flex-direction: column;
+        gap: 10px;
+      }
+      .lb-img-label {
+        font-size: 14px;
+        color: var(--text-dark);
+        font-weight: 600;
+      }
+      .lb-info {
+        padding: 24px;
+      }
+      .lb-title {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+      }
+      .lb-desc {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+      .lb-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--text-dark);
+        z-index: 2;
+        font-size: 16px;
+        transition: 0.2s;
+      }
+      .lb-close:hover {
+        color: var(--brand);
+        border-color: var(--brand);
+      }
+
+      /* FAQ */
+      .faq-list {
+        margin-top: 28px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--white);
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+      .faq-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-dark);
+        transition: background 0.2s;
+        gap: 16px;
+      }
+      .faq-q:hover {
+        background: var(--bg-alt);
+        color: var(--brand);
+      }
+      .faq-q i {
+        font-size: 18px;
+        color: var(--brand);
+        flex-shrink: 0;
+        transition: transform 0.25s;
+      }
+      .faq-item.open .faq-q i {
+        transform: rotate(45deg);
+      }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+      .faq-item.open .faq-a {
+        max-height: 250px;
+      }
+      .faq-a-inner {
+        padding: 0 24px 20px;
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+
+      /* FORM */
+      .form-section {
+        padding: 72px 40px;
+        max-width: 760px;
+        margin: 0 auto;
+        background: var(--bg-alt);
+        border-radius: 20px;
+        margin-bottom: 72px;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 32px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .form-group.full {
+        grid-column: 1/-1;
+      }
+      .form-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text-dark);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .form-input,
+      .form-select,
+      .form-textarea {
+        padding: 14px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 14px;
+        color: var(--text-dark);
+        font-family: "DM Sans", sans-serif;
+        background: #fff;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        outline: none;
+        width: 100%;
+      }
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        border-color: var(--brand);
+        box-shadow: 0 0 0 3px var(--brand-light);
+      }
+      .form-input.error,
+      .form-select.error,
+      .form-textarea.error {
+        border-color: #ef4444;
+      }
+      .form-error {
+        font-size: 11px;
+        font-weight: 500;
+        color: #ef4444;
+        margin-top: 2px;
+        display: none;
+      }
+      .form-error.show {
+        display: block;
+      }
+      .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .form-submit {
+        margin-top: 20px;
+        width: 100%;
+        padding: 16px;
+        background: var(--brand);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.1s;
+      }
+      .form-submit:hover {
+        background: var(--brand-hover);
+        transform: translateY(-2px);
+      }
+      .form-success {
+        display: none;
+        text-align: center;
+        padding: 40px;
+        background: var(--white);
+        border: 2px solid var(--brand);
+        border-radius: 12px;
+        margin-top: 20px;
+      }
+      .form-success i {
+        font-size: 48px;
+        color: var(--brand);
+        display: block;
+        margin-bottom: 16px;
+      }
+      .form-success h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+      }
+      .form-success p {
+        font-size: 15px;
+        color: var(--text-muted);
+      }
+
+      /* FOOTER */
+      .footer {
+        background: var(--text-dark);
+        color: white;
+        padding: 60px 40px 20px;
+      }
+      .footer-content {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+      .footer-brand h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+      .footer-brand span {
+        color: var(--brand);
+        font-style: italic;
+      }
+      .footer-brand p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 14px;
+        line-height: 1.6;
+        max-width: 300px;
+      }
+      .footer-links h4,
+      .footer-contact h4 {
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: var(--brand);
+        font-weight: 700;
+      }
+      .footer-links a {
+        display: block;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        margin-bottom: 12px;
+        font-size: 14px;
+        transition: color 0.2s;
+        cursor: pointer;
+      }
+      .footer-links a:hover {
+        color: white;
+      }
+      .footer-contact p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .footer-contact i {
+        color: var(--brand);
+        font-size: 18px;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <button
+      class="wa-btn"
+      onclick="
+        openLink(
+          'https://wa.me/11234567890?text=Hi%2C%20I%27d%20like%20to%20book%20a%20candy%20wall%20experience!',
+        )
+      "
+      aria-label="Chat on WhatsApp"
+      style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+        background: #25d366;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+      "
+    >
+      <i class="ti ti-brand-whatsapp" style="font-size: 32px"></i>
+    </button>
+
+    <div class="lightbox" id="lightbox" onclick="closeLB(event)">
+      <div class="lb-content">
+        <button class="lb-close" onclick="closeLB()" aria-label="Close">
+          <i class="ti ti-x"></i>
+        </button>
+        <div class="lb-img" id="lbImg"></div>
+        <div class="lb-info">
+          <div class="lb-title" id="lbTitle"></div>
+          <div class="lb-desc" id="lbDesc"></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-logo">
+        <img src="./mr.png" alt="MR ANDY" />
+      </div>
+      <div class="nav-links">
+        <a onclick="goTo('events')">Events</a>
+        <a onclick="goTo('packages')">Packages</a>
+        <a onclick="goTo('gallery')">Gallery</a>
+        <a onclick="goTo('booking')">Contact</a>
+      </div>
+      <button class="nav-cta" onclick="goTo('booking')">Book Now →</button>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Premium Candy Wall Experiences</div>
+        <h1 class="hero-title">
+          The Sweetest Part <br />
+          of Every <br />
+          <span class="hero-highlight">Celebration</span>
+        </h1>
+        <p class="hero-body">
+          More than a dessert station. Custom candy wall experiences designed to
+          delight guests, complement your event, and create unforgettable
+          moments
+        </p>
+        <div class="hero-btns">
+          <a onclick="goTo('packages')" class="btn-primary"
+            >Book your Experience</a
+          >
+          <a onclick="goTo('customizer')" class="btn-secondary"
+            >Design your wall</a
+          >
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-image-container">
+          <!-- Placeholder style added -->
+          <img
+            src="./ChatGPT.png"
+            alt="Candy Wall"
+            style="background: var(--bg-alt); min-height: 400px; display: block"
+          />
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-inner">
+        <span>Birthday Parties</span>
+        <span>Baby Showers</span>
+        <span>Corporate Events</span>
+        <span>Wedding</span>
+        <span>Product Launches</span>
+        <span>School Events</span>
+        <span>Holiday Parties</span>
+        <span>Birthday Parties</span>
+        <span>Baby Showers</span>
+        <span>Corporate Events</span>
+        <span>Wedding</span>
+        <span>Product Launches</span>
+        <span>School Events</span>
+        <span>Holiday Parties</span>
+      </div>
+    </div>
+
+    <section id="events">
+      <div class="events-left">
+        <p class="sec-label">Crafted For Every Occasion</p>
+        <h2>Perfect For Every <br /><span>Celebration</span></h2>
+        <p>
+          From intimate celebrations to large-scale corporate events, our custom
+          candy walls create memorable experiences that become the centerpiece
+          of every gathering.
+        </p>
+        <div class="events-features">
+          <div class="feature-item">
+            <i class="ti ti-circle-check"></i><span>Custom Theme Matching</span>
+          </div>
+          <div class="feature-item">
+            <i class="ti ti-circle-check"></i
+            ><span>Premium Candy Selection</span>
+          </div>
+          <div class="feature-item">
+            <i class="ti ti-circle-check"></i
+            ><span>Complete Setup & Teardown</span>
+          </div>
+          <div class="feature-item">
+            <i class="ti ti-circle-check"></i
+            ><span>Instagram-Worthy Experiences</span>
+          </div>
+        </div>
+      </div>
+      <div class="events-right">
+        <div class="event-card">
+          <i class="ti ti-cake"></i><span>Birthday Parties</span>
+        </div>
+        <div class="event-card">
+          <i class="ti ti-star"></i><span>Baby Showers</span>
+        </div>
+        <div class="event-card">
+          <i class="ti ti-ring"></i><span>Wedding Receptions</span>
+        </div>
+        <div class="event-card">
+          <i class="ti ti-briefcase"></i><span>Corporate Events</span>
+        </div>
+        <div class="event-card">
+          <i class="ti ti-rocket"></i><span>Product Launches</span>
+        </div>
+        <div class="event-card">
+          <i class="ti ti-tree"></i><span>Holiday Parties</span>
+        </div>
+        <div class="event-card">
+          <i class="ti ti-school"></i><span>School Events</span>
+        </div>
+        <div class="event-card">
+          <i class="ti ti-glass-champagne"></i><span>Private Celebrations</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="customizer-section" id="customizer">
+      <div class="customizer-inner">
+        <div>
+          <p class="sec-label">Make it yours</p>
+          <h2 class="sec-title">Design your perfect candy wall</h2>
+          <p class="sec-body">
+            Choose a color palette and watch your wall come to life. We'll match
+            your event theme, brand colors, or décor exactly.
+          </p>
+          <div
+            class="disp-row"
+            id="dGrid"
+            style="margin-top: 20px; grid-template-columns: repeat(10, 1fr)"
+          ></div>
+          <div class="theme-swatches" id="swatches"></div>
+        </div>
+        <div>
+          <div class="preview-wall">
+            <div class="wall-title" id="themeLabel" style="margin-bottom: 14px">
+              Signature Rose
+            </div>
+            <div class="preview-disp-row" id="previewGrid"></div>
+            <div
+              class="wall-hint"
+              style="
+                margin-top: 16px;
+                color: var(--text-muted);
+                font-size: 12px;
+                text-align: center;
+                font-weight: 500;
+              "
+            >
+              Live theme preview
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="packages-section" id="packages">
+      <div
+        class="packages-header"
+        style="text-align: center; max-width: 600px; margin: 0 auto"
+      >
+        <p class="sec-label">Pricing & Packages</p>
+        <h2 class="sec-title">
+          Transparent Pricing,<br /><span class="hero-highlight"
+            >No Surprises</span
+          >
+        </h2>
+        <p class="sec-body" style="margin: 0 auto">
+          Choose the perfect candy wall experience for your celebration. Every
+          package includes delivery, setup, styling, and teardown.
+        </p>
+      </div>
+
+      <div class="pkg-grid" id="pkgGrid"></div>
+
+      <div class="extras-wrapper">
+        <h3 class="extras-title">Enhance Your Experience</h3>
+        <div class="extras" id="extras"></div>
+      </div>
+
+      <div class="calculator-summary">
+        <div class="calc-total" id="calcTotal">$0</div>
+        <div class="calc-note" id="calcNote">
+          Select a package to see your total estimate.
+        </div>
+      </div>
+    </section>
+
+    <div class="usp-section">
+      <div class="usp-inner">
+        <p class="sec-label">Why choose us</p>
+        <h2 class="sec-title">
+          The gold standard in<br />candy wall experiences
+        </h2>
+        <div class="usp-grid">
+          <div class="usp-card">
+            <div class="usp-icon">
+              <i class="ti ti-hand-click" aria-hidden="true"></i>
+            </div>
+            <h3>Interactive experience</h3>
+            <p>Self-serve dispensers guests of all ages love to operate</p>
+          </div>
+          <div class="usp-card">
+            <div class="usp-icon">
+              <i class="ti ti-palette" aria-hidden="true"></i>
+            </div>
+            <h3>Custom branding</h3>
+            <p>Signage, color themes, and logos tailored to your event</p>
+          </div>
+          <div class="usp-card">
+            <div class="usp-icon">
+              <i class="ti ti-candy" aria-hidden="true"></i>
+            </div>
+            <h3>Premium candy selection</h3>
+            <p>Artisan chocolates, gummies, and confections</p>
+          </div>
+          <div class="usp-card">
+            <div class="usp-icon">
+              <i class="ti ti-truck-delivery" aria-hidden="true"></i>
+            </div>
+            <h3>White-glove service</h3>
+            <p>We deliver, install, replenish, and pack up — seamlessly</p>
+          </div>
+          <div class="usp-card">
+            <div class="usp-icon">
+              <i class="ti ti-resize" aria-hidden="true"></i>
+            </div>
+            <h3>Flexible configs</h3>
+            <p>Intimate 5-dispenser walls to grand 20+ installations</p>
+          </div>
+          <div class="usp-card">
+            <div class="usp-icon">
+              <i class="ti ti-users" aria-hidden="true"></i>
+            </div>
+            <h3>All ages welcome</h3>
+            <p>Tailored treat selections for kids, adults, or both</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-section" id="gallery">
+      <div class="gallery-inner">
+        <div style="text-align: center; margin-bottom: 20px">
+          <p class="sec-label">Our portfolio</p>
+          <h2 class="sec-title">Moments we've made sweeter</h2>
+          <p class="sec-body" style="margin: 0 auto">
+            A selection of candy walls we've crafted for events across the
+            country.
+          </p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div style="text-align: center">
+        <p class="sec-label">FAQ</p>
+        <h2 class="sec-title">Everything you need to know</h2>
+      </div>
+      <div
+        class="faq-list"
+        id="faqList"
+        style="max-width: 800px; margin: 32px auto 0"
+      ></div>
+    </div>
+
+    <div class="form-section" id="booking">
+      <div style="text-align: center">
+        <p class="sec-label">Get in touch</p>
+        <h2 class="sec-title">Book your candy wall</h2>
+        <p class="sec-body" style="margin: 0 auto">
+          Tell us about your event and we'll respond within 24 hours with a
+          personalized quote.
+        </p>
+      </div>
+      <div class="form-grid" id="bookingForm">
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input
+            class="form-input"
+            id="fname"
+            type="text"
+            placeholder="Jane Smith"
+          />
+          <span class="form-error" id="fname-err">Please enter your name</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number *</label>
+          <input
+            class="form-input"
+            id="phone"
+            type="tel"
+            placeholder="+1 (555) 000-0000"
+          />
+          <span class="form-error" id="phone-err"
+            >Please enter a valid phone number</span
+          >
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Email Address *</label>
+          <input
+            class="form-input"
+            id="email"
+            type="email"
+            placeholder="jane@example.com"
+          />
+          <span class="form-error" id="email-err"
+            >Please enter a valid email</span
+          >
+        </div>
+        <div class="form-group">
+          <label class="form-label">Event Type *</label>
+          <select class="form-select" id="etype">
+            <option value="">Select event type</option>
+            <option>Birthday Party</option>
+            <option>Baby Shower</option>
+            <option>Wedding Reception</option>
+            <option>Corporate Event</option>
+            <option>Other</option>
+          </select>
+          <span class="form-error" id="etype-err"
+            >Please select an event type</span
+          >
+        </div>
+        <div class="form-group">
+          <label class="form-label">Event Date *</label>
+          <input class="form-input" id="edate" type="date" />
+          <span class="form-error" id="edate-err">Please select a date</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Guest Count</label>
+          <input
+            class="form-input"
+            id="guests"
+            type="number"
+            placeholder="100"
+            min="1"
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Package</label>
+          <select class="form-select" id="pkgPref">
+            <option value="">Select a package</option>
+            <option>Essential — 5 dispensers</option>
+            <option>Signature — 10 dispensers</option>
+            <option>Prestige — 15 dispensers</option>
+            <option>Grand — 20+ dispensers</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Event Details</label>
+          <textarea
+            class="form-textarea"
+            id="msg"
+            placeholder="Tell us about your theme, color preferences, venue, and any special requests..."
+          ></textarea>
+        </div>
+        <div class="form-group full">
+          <button class="form-submit" onclick="submitForm()">
+            Send Inquiry ↗
+          </button>
+        </div>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <i class="ti ti-mail-check"></i>
+        <h3>Inquiry received!</h3>
+        <p>
+          Thank you for reaching out. Our team will review your event details
+          and get back to you within 24 hours with a personalized quote.
+        </p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Mr. <span>Andy</span></h3>
+          <p>
+            Creating unforgettable candy wall experiences for celebrations,
+            weddings, birthdays, and corporate events.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a onclick="goTo('events')">Events</a>
+          <a onclick="goTo('packages')">Packages</a>
+          <a onclick="goTo('gallery')">Gallery</a>
+          <a onclick="goTo('booking')">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <h4>Get In Touch</h4>
+          <p><i class="ti ti-phone"></i> +1 (555) 123-4567</p>
+          <p><i class="ti ti-mail"></i> hello@mrandy.com</p>
+          <p><i class="ti ti-map-pin"></i> Serving Events Across The US</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Mr. Andy. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      function goTo(id) {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+
+      function openLink(url) {
+        window.open(url, "_blank");
+      }
+
+      // CUSTOMIZER
+      const candyColors = [
+        { c: "#fd375b", h: 62 },
+        { c: "#ff6b81", h: 75 },
+        { c: "#ff9fb3", h: 50 },
+        { c: "#e0294b", h: 68 },
+        { c: "#ff4d6d", h: 80 },
+        { c: "#ffccd5", h: 55 },
+        { c: "#c9184a", h: 70 },
+        { c: "#a4133c", h: 60 },
+        { c: "#ff758f", h: 72 },
+        { c: "#fd375b", h: 58 },
+      ];
+      const dg = document.getElementById("dGrid");
+      if (dg) {
+        candyColors.forEach((cd, i) => {
+          const d = document.createElement("div");
+          d.className = "disp";
+          d.innerHTML = `<div class="disp-fill" id="f${i}" style="height:${cd.h}%;background:${cd.c}"></div>`;
+          d.addEventListener("mouseenter", () => {
+            const f = document.getElementById("f" + i);
+            const c = parseInt(f.style.height);
+            if (c > 10) f.style.height = c - 9 + "%";
+          });
+          dg.appendChild(d);
+        });
+      }
+
+      // Updated Customizer Themes to fit the new modern color palette better
+      const themes = [
+        {
+          name: "Signature Rose",
+          colors: ["#fd375b", "#ff4d6d", "#ff758f", "#ff9fb3", "#ffccd5"],
+          bg: "#ffffff",
+        },
+        {
+          name: "Midnight Red",
+          colors: ["#fd375b", "#c9184a", "#a4133c", "#800f2f", "#590d22"],
+          bg: "#111827",
+        },
+        {
+          name: "Classic Elegance",
+          colors: ["#111827", "#374151", "#fd375b", "#e5e7eb", "#ffffff"],
+          bg: "#f9fafb",
+        },
+        {
+          name: "Sweet Champagne",
+          colors: ["#f4a261", "#e9c46a", "#fd375b", "#e76f51", "#2a9d8f"],
+          bg: "#ffffff",
+        },
+      ];
+      let activeTheme = 0;
+      const sg = document.getElementById("swatches");
+      if (sg) {
+        themes.forEach((t, i) => {
+          const s = document.createElement("div");
+          s.className = "swatch" + (i === 0 ? " active" : "");
+          s.innerHTML = `<div class="swatch-circle" style="background:${t.colors[0]}"></div><div class="swatch-name">${t.name}</div>`;
+          s.onclick = () => {
+            document
+              .querySelectorAll(".swatch")
+              .forEach((x) => x.classList.remove("active"));
+            s.classList.add("active");
+            activeTheme = i;
+            updatePreview();
+          };
+          sg.appendChild(s);
+        });
+      }
+
+      const heights = [60, 75, 50, 68, 80];
+      const pg = document.getElementById("previewGrid");
+      if (pg) {
+        heights.forEach((h, i) => {
+          const d = document.createElement("div");
+          d.className = "preview-disp";
+          d.innerHTML = `<div class="preview-disp-fill" id="pf${i}" style="height:${h}%;background:${themes[0].colors[i]}"></div>`;
+          pg.appendChild(d);
+        });
+      }
+
+      function updatePreview() {
+        const t = themes[activeTheme];
+        const tLabel = document.getElementById("themeLabel");
+        const pGrid = document.getElementById("previewGrid");
+        if (tLabel) {
+          tLabel.textContent = t.name;
+          // Contrast check for the label text based on background
+          tLabel.style.color =
+            t.bg === "#111827" ? "rgba(255,255,255,0.7)" : "var(--text-muted)";
+        }
+        if (pGrid && pGrid.parentElement) {
+          pGrid.parentElement.style.background = t.bg;
+          // adjust border of the preview wall based on theme
+          pGrid.parentElement.style.borderColor =
+            t.bg === "#111827" ? "#374151" : "var(--border)";
+        }
+        heights.forEach((_, i) => {
+          const pf = document.getElementById("pf" + i);
+          if (pf) pf.style.background = t.colors[i % 5];
+        });
+      }
+
+      // PACKAGES & EXTRAS
+      const packages = [
+        {
+          name: "Essential",
+          dispensers: 5,
+          price: 1499,
+          features: [
+            "5 candy dispensers",
+            "2 candy varieties",
+            "Standard backdrop",
+            "3-hour coverage",
+          ],
+          popular: false,
+        },
+        {
+          name: "Signature",
+          dispensers: 10,
+          price: 2499,
+          features: [
+            "10 candy dispensers",
+            "4 candy varieties",
+            "Themed backdrop",
+            "5-hour coverage",
+            "Custom signage",
+          ],
+          popular: true,
+        },
+        {
+          name: "Prestige",
+          dispensers: 15,
+          price: 3999,
+          features: [
+            "15 candy dispensers",
+            "6 candy varieties",
+            "Luxury backdrop",
+            "Full-day coverage",
+            "Branded signage",
+            "Candy replenishment",
+          ],
+          popular: false,
+        },
+        {
+          name: "Grand",
+          dispensers: "20+",
+          price: 5999,
+          features: [
+            "20+ candy dispensers",
+            "8 candy varieties",
+            "Grand display backdrop",
+            "Full-day coverage",
+            "Full branding package",
+            "Unlimited replenishment",
+          ],
+          popular: false,
+        },
+      ];
+      let selectedPkg = null;
+      const extrasData = [
+        { label: "Name personalization", price: 150 },
+        { label: "Logo branding", price: 299 },
+        { label: "Premium candy upgrade", price: 199 },
+        { label: "Fairy light display", price: 125 },
+        { label: "Photo frame prop", price: 99 },
+        { label: "Extra candy bags (50)", price: 149 },
+      ];
+      let activeExtras = new Set();
+
+      const pkgG = document.getElementById("pkgGrid");
+      if (pkgG) {
+        packages.forEach((p, i) => {
+          const c = document.createElement("div");
+          c.className = "pkg-card";
+          let inner = p.popular
+            ? `<div class="pkg-badge">Most Popular</div>`
+            : "";
+          inner += `<div class="pkg-name">${p.name}</div><div class="pkg-price">$${p.price.toLocaleString()}<span> / event</span></div><ul class="pkg-features">${p.features.map((f) => `<li><i class="ti ti-circle-check" aria-hidden="true"></i>${f}</li>`).join("")}</ul><button class="pkg-select-btn">Select ${p.name}</button>`;
+          c.innerHTML = inner;
+          c.onclick = () => {
+            document
+              .querySelectorAll(".pkg-card")
+              .forEach((x) => x.classList.remove("selected"));
+            c.classList.add("selected");
+            selectedPkg = i;
+            updateCalc();
+          };
+          pkgG.appendChild(c);
+        });
+      }
+
+      const extG = document.getElementById("extras");
+      if (extG) {
+        extrasData.forEach((e, i) => {
+          const t = document.createElement("div");
+          t.className = "extra-tag";
+          t.innerHTML = `<i class="ti ti-plus" aria-hidden="true"></i>${e.label} <strong>+$${e.price}</strong>`;
+          t.onclick = () => {
+            activeExtras.has(i) ? activeExtras.delete(i) : activeExtras.add(i);
+            t.classList.toggle("active");
+            const icon = t.querySelector("i");
+            if (activeExtras.has(i)) {
+              icon.classList.replace("ti-plus", "ti-check");
+            } else {
+              icon.classList.replace("ti-check", "ti-plus");
+            }
+            updateCalc();
+          };
+          extG.appendChild(t);
+        });
+      }
+
+      function updateCalc() {
+        if (selectedPkg === null) return;
+        const base = packages[selectedPkg].price;
+        const extra = [...activeExtras].reduce(
+          (s, i) => s + extrasData[i].price,
+          0,
+        );
+        const ct = document.getElementById("calcTotal");
+        const cn = document.getElementById("calcNote");
+        if (ct) ct.textContent = "$" + (base + extra).toLocaleString();
+        if (cn)
+          cn.textContent = `${packages[selectedPkg].name} package${extra > 0 ? " + extras" : ""} · includes delivery, setup & teardown`;
+      }
+
+      // GALLERY
+      const galleryData = [
+        {
+          emoji: "🎂",
+          label: "Birthday party",
+          title: "Glamour Birthday Soirée",
+          desc: "A custom themed 15-dispenser wall for a milestone 40th birthday. Featured custom monogram signage and artisan chocolate selection.",
+        },
+        {
+          emoji: "🎀",
+          label: "Baby shower",
+          title: "Golden Baby Shower",
+          desc: 'Warm ivory palette with a personalized "Baby Rodriguez" backdrop. Premium organic candy selection throughout.',
+        },
+        {
+          emoji: "💼",
+          label: "Corporate launch",
+          title: "Brand Launch Experience",
+          desc: "Full branded 20-dispenser grand wall in corporate colors for a 600-attendee product launch event in downtown Chicago.",
+        },
+        {
+          emoji: "💍",
+          label: "Wedding reception",
+          title: "Elegant Wedding Candy Bar",
+          desc: "Ivory and champagne gold themed wall that became the most photographed spot of the evening. Guests raved about it for weeks.",
+        },
+        {
+          emoji: "🎄",
+          label: "Holiday party",
+          title: "Holiday Gala",
+          desc: "Festive candy wall for a 300-person corporate holiday gala. Featured seasonal candy selection and custom ornament signage.",
+        },
+        {
+          emoji: "🎓",
+          label: "Graduation party",
+          title: "Graduation Celebration",
+          desc: "School colors backdrop with a 10-dispenser Signature wall. A sweet way to celebrate four years of hard work with family and friends.",
+        },
+      ];
+      const gGrid = document.getElementById("galleryGrid");
+      if (gGrid) {
+        galleryData.forEach((item) => {
+          const d = document.createElement("div");
+          d.className = "gallery-item";
+          d.innerHTML = `<div class="gallery-thumb"><span style="font-size:38px">${item.emoji}</span><div class="gallery-thumb-label">${item.label}</div></div><div class="gallery-overlay"><i class="ti ti-zoom-in" aria-hidden="true"></i></div>`;
+          d.onclick = () => {
+            const lbi = document.getElementById("lbImg");
+            const lbt = document.getElementById("lbTitle");
+            const lbd = document.getElementById("lbDesc");
+            const lbox = document.getElementById("lightbox");
+            if (lbi)
+              lbi.innerHTML = `<span style="font-size:52px">${item.emoji}</span><div class="lb-img-label">${item.label}</div>`;
+            if (lbt) lbt.textContent = item.title;
+            if (lbd) lbd.textContent = item.desc;
+            if (lbox) lbox.classList.add("open");
+          };
+          gGrid.appendChild(d);
+        });
+      }
+
+      function closeLB(e) {
+        const lbox = document.getElementById("lightbox");
+        if (
+          lbox &&
+          (!e ||
+            e.target === lbox ||
+            e.target.classList.contains("lb-close") ||
+            e.target.parentElement.classList.contains("lb-close"))
+        ) {
+          lbox.classList.remove("open");
+        }
+      }
+
+      // FAQ
+      const faqs = [
+        {
+          q: "How far in advance should I book?",
+          a: "We recommend booking at least 2–3 weeks ahead, particularly for weekends and holiday seasons. For large corporate events or peak dates, 4–6 weeks in advance ensures availability.",
+        },
+        {
+          q: "Can I choose specific candy flavors?",
+          a: "Absolutely. All packages allow you to customize candy selections based on your preferences, dietary requirements, or theme. Just let us know during the inquiry process.",
+        },
+        {
+          q: "Is candy included, or do I provide it?",
+          a: "Candy supply is fully included in every package. We source premium and artisan confections. You can also request specialty or imported candy as an add-on upgrade.",
+        },
+        {
+          q: "How long does setup and teardown take?",
+          a: "Setup typically takes 1.5–2 hours before your event. Teardown takes around 45–60 minutes after. We coordinate all timing directly with your venue.",
+        },
+        {
+          q: "What if candy runs out during the event?",
+          a: "Signature, Prestige, and Grand packages include replenishment service throughout your event. Essential package clients can add a replenishment service at booking.",
+        },
+        {
+          q: "Do you travel for out-of-state events?",
+          a: "Yes! We service events nationwide. Travel fees apply for locations outside our primary coverage area. Contact us with your event location for a custom travel quote.",
+        },
+      ];
+      const faqL = document.getElementById("faqList");
+      if (faqL) {
+        faqs.forEach((f) => {
+          const item = document.createElement("div");
+          item.className = "faq-item";
+          item.innerHTML = `<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">${f.q}<i class="ti ti-plus"></i></div><div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>`;
+          faqL.appendChild(item);
+        });
+      }
+
+      // FORM VALIDATION
+      function submitForm() {
+        let valid = true;
+        [
+          { id: "fname", errId: "fname-err", test: (v) => v.trim().length > 1 },
+          {
+            id: "phone",
+            errId: "phone-err",
+            test: (v) => /^[\d\s\+\(\)\-]{7,}$/.test(v.trim()),
+          },
+          {
+            id: "email",
+            errId: "email-err",
+            test: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+          },
+          { id: "etype", errId: "etype-err", test: (v) => v !== "" },
+          { id: "edate", errId: "edate-err", test: (v) => v !== "" },
+        ].forEach(({ id, errId, test }) => {
+          const el = document.getElementById(id);
+          const err = document.getElementById(errId);
+          if (el && err) {
+            if (!test(el.value)) {
+              el.classList.add("error");
+              err.classList.add("show");
+              valid = false;
+            } else {
+              el.classList.remove("error");
+              err.classList.remove("show");
+            }
+          }
+        });
+
+        if (valid) {
+          const bf = document.getElementById("bookingForm");
+          const fs = document.getElementById("formSuccess");
+          if (bf) bf.style.display = "none";
+          if (fs) fs.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
