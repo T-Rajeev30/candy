@@ -280,15 +280,13 @@
 ========================== */
 
 #events {
-  height: calc(100vh - 72px);
+  /* height: calc(100vh - 72px);  ← remove this */
+  padding: 100px 6%; /* ← controls vertical space */
 
   display: grid;
   grid-template-columns: 45% 55%;
   align-items: center;
-
-  padding: 0 6%;
   gap: 60px;
-
   background: #ffffff;
 }
 
